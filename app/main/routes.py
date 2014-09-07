@@ -12,14 +12,6 @@ def home():
 def about():
   return render_template('about.html')
 
-@main.route('/testdb')
-def testdb():
-  if db.session.query("1").from_statement("SELECT 1").all():
-    return 'It works.'
-  else:
-    return 'Something is broken.'
-
-
 @main.route('/signup', methods=['GET', 'POST'])
 def signup():
   form = SignupForm()
@@ -40,7 +32,6 @@ def signup():
     
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
-  
   
 @main.route('/signin', methods=['GET', 'POST'])
 def signin():
@@ -64,7 +55,6 @@ def signout():
   
   session.pop('email', None)
   return redirect(url_for('main.home'))
-
 
 @main.route('/profile')
 def profile():
